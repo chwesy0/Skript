@@ -1,0 +1,10 @@
+#AntiSpam
+on chat:
+    if player doesn't have permission "XXXX.spam":
+        set {_difference} to difference between {chatspam::%player%} and now
+        if {_difference} is less than 2 seconds: 
+            set  {_difference} to difference between {_difference} and 2 seconds
+            cancel event
+            send "&bXXXX &eTekrar mesaj yazmak için &d%{_difference}% &ebeklemelisin." to player
+        set {chatspam::%player%} to now
+        by chwesy0
