@@ -1,0 +1,24 @@
+command /cekilisbaslat:
+    trigger:
+        if player has permission "cekilisbaslat.yetki": # yetkisi olanlar kullanabilir.
+            loop all players:
+                add loop-player to {oyuncular::*}
+            wait 1 second
+            broadcast "&3&lXXXX &8» &eÇekilişe son &a10 saniye&e!"
+            wait 5 second
+            broadcast "&3&lXXXX &8» &eÇekilişe son &a5 saniye&e!"
+            wait 2 second
+            broadcast "&3&lXXXX &8» &eÇekilişe son &a3 saniye&e!"
+            wait 1 second
+            broadcast "&3&lXXXX &8» &eÇekilişe son &a2 saniye&e!"
+            wait 1 second
+            broadcast "&3&lXXXX &8» &eÇekilişe son &a1 saniye&e!"
+            wait 3 seconds
+            set {kazanan} to random element of {oyuncular::*}
+            broadcast " &6&lÇEKILIŞ SONUCU"
+            broadcast ""
+            broadcast " &bKazanan &8» &3%{kazanan}%"
+            broadcast ""
+            broadcast " &awww.XXXX.com"
+            clear {oyuncular::*}
+            by chwesy0
