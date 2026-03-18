@@ -1,0 +1,71 @@
+on chat:
+	if player does not have permission "ABW.sk":
+		set {_mesaj} to the chat message
+		set {_ayrimlar::*} to message split at " "
+		loop {_ayrimlar::*}:
+			if loop-value contains "anani" or "ananı" or "sikerim" or "sikim" or "sikeyim" or "siktimin" or "sıkerım" or "sıkeyım" or "sıktımın" or "sıkerim" or "sıkeyim" or "sıktimin" or "sikerım" or "sikeyım" or "siktımin" or "siktimın" or "orospu" or "0rospu" or "0r0spu":
+				set {_ailevi} to loop-index parsed as integer
+				remove 1 from {_ailevi}
+				set {_ailevi} to {_ayrimlar::%{_ailevi}%}
+				if {_ailevi} contains "anan" or "çocuğu" or "çocugu" or "cocugu" or "cocuğu" or "evladı" or "ç0cuğu" or "c0cugu" or "c0cuğu" or "evladı" or "evladi":
+					add "%{_ayrimlar::%loop-index%}% %{_ailevi}%" to {_kufurler::*}
+					set {_ailevi} to true
+				else:
+					set {_ailevi} to loop-index parsed as integer
+					add 1 to {_ailevi}
+					set {_ailevi} to {_ayrimlar::%{_ailevi}%}
+					if {_ailevi} contains "anan" or "çocuğu" or "çocugu" or "cocugu" or "cocuğu" or "evladı" or "ç0cuğu" or "c0cugu" or "c0cuğu" or "evladı" or "evladi" or "o ç" or "o c":
+						add "%{_ayrimlar::%loop-index%}% %{_ailevi}%" to {_kufurler::*}
+						set {_ailevi} to true
+					else:
+						add {_ayrimlar::%loop-index%} to {_kufurler::*}
+						set {_kufurvar} to true
+			else if loop-value is "oç" or "o.ç" or "0.ç" or "0ç" or "orospuevladı" or "orospucocugu" or "enderoyuncu" or "reborn" or "reborncraft" or "orospuçocugu" or "orospuçocuğu" or "ananısikerim" or "ananisikerim" or "annenisikerim" or "annenısikerim" or "babanısikerim" or "sikerimananı" or "sikerimanani" or "sikerimanneni" or "sikerimannenı":
+				add {_ayrimlar::%loop-index%} to {_kufurler::*}
+				set {_ailevi} to true
+			else if loop-value is "sikik" or "sg" or "s.g" or "aq" or "a.q" or "amq" or "a.m.q" or "amk" or "a.m.k" or "amına" or "piç" or "p1ç" or "p1c" or "p.i.ç" or "piçler" or "picler" or "piçsin" or "picsin" or "yavşak" or "yavsak" or "yavsaksın" or "yavsaksin" or "yavşaksın" or "yavşaksin" or "gavat" or "gavatsın" or "gavatsin" or "gavatlar"  or "amcık" or "amcik" or "amcıklar" or "amcikler" or "amcıksın" or "fahişe":
+				set {_kufurvar} to true
+				add loop-value to {_kufurler::*}
+			else if loop-value contains "siktir" or "yarrak" or "y4rk" or "y4rrak" or "sikiş" or "sikis":
+				set {_kufurvar} to true
+				add loop-value to {_kufurler::*}
+			else if loop-value contains "şerefsiz" or "serefsiz" or "salak" or "pezevenk" or "götten" or "g0tten" or "gotten" or "g0tundeki" or "g0tündeki" or "yavşak":
+				set {_argovar} to true
+				add loop-value to {_kufurler::*}
+			else if loop-value is "ibne" or "ibneler" or "ibnesin" or "ibnemisin" or "ibnemisiniz" or "mal" or "g0t" or "göt" or "got":
+				set {_argovar} to true
+				add loop-value to {_kufurler::*}
+			else:
+				replace all " " with "" in {_mesaj}
+				if {_mesaj} contains "şerefsiz" or "serefsiz" or "salak" or "pezevenk" or "götten" or "yavşak":
+					set {_argovar} to true
+				else if {_mesaj} contains "ananısikerim" or "ananisikerim" or "ananisıkerim" or "ananisıkerım" or "anasınısikerim" or "annesinisikerim" or "anasinisikerim" or "orospucocuğu" or "orospucocugu" or "0rospucocugu" or "0rospucocuğu" or "0r0spucocugu" or "0r0spucocuğu":
+					set {_ailevi} to true
+				else if {_mesaj} contains "sikiş" or "sonoyuncu" or "craftrise" or "gerizekalı" or "gerizekali" or "aptal" or "yarrak" or "sikis" or "siktir" or "sikerim" or "sikeyim" or "siktimin" or "siktiğimin" or "sıkerım" or "sıkeyım" or "sıktımın" or "sıkerim" or "sıkeyim" or "sıktimin" or "sikerım" or "sikeyım" or "siktımin" or "siktimın" or "orospu" or "0rospu" or "0r0spu":
+					set {_kufurvar} to true
+		set {_kufurler::*} to "%{_kufurler::*}%"
+		set {_cumle} to the chat message
+		replace all " " with "-" in {_cumle}
+		replace all "and" with "ve" in {_kufurler::*}
+		if {_ailevi} is true:
+			cancel event
+			log "%player% Adlı Oyuncunun %message% mesajı engellendi." to "küfür.log"
+			execute console command "tempmute %player% 24h Ailevi Küfür (Otomatik Sistem)"
+		else if {_kufurvar} is true:
+			cancel event
+			log "%player% Adlı Oyuncunun %message% mesajı engellendi." to "küfür.log"
+			execute console command "tempmute %player% 6h Küfür (Otomatik Sistem)"
+		else if {_argovar} is true:
+			log "%player% Adlı Oyuncunun %message% mesajı engellendi." to "küfür.log"
+			execute console command "tempmute %player% 1h Argo - Hakaret (Otomatik Sistem)"
+			cancel event
+			
+on command "/server":
+    cancel event
+on command "/server boxpvp":
+    cancel event
+on command "/server lobi":
+    cancel event
+on command "/pl":
+    cancel event
+by chwesy0
