@@ -1,0 +1,45 @@
+on chat:
+    if message is "sa" or "sae":
+        set message to "Selamun Aleyküm"
+    else if message is "as" or "ase":
+        set message to "Aleyküm Selam"
+on chat:
+    if message is "hg":
+        set message to "Hoşgeldin"
+    else if message is "hb":
+        set message to "Hoşbuldum"
+on chat:
+    if message is "knk":
+        set message to "Kanka"
+    else if message is "a.s":
+        set message to "Aleyküm Selam"
+on chat:
+    if message is "s.a" or "selam":
+        set message to "Selamun Aleyküm"
+    else if message is "bb" or "by":
+        set message to "Görüşürüz"
+on chat:
+    if message is "gg":
+        set message to "İyi oyundu"
+    else if message is "kg":
+        set message to "Kolay gelsin"
+on chat:
+    if message is "eyw":
+        set message to "Eyvallah"
+    else if message is "kb" or "k.b":
+        set message to "Kusura bakma"
+on chat:
+    if message is "hyr":
+        set message to "Hayır"
+    else if message is "evt":
+        set message to "Evet"
+on chat:
+    if message is "tm" or "tmm":
+        set message to "Tamam"
+    else if message is "ok" or "okey":
+        set message to "Tamam"
+on chat:
+    if message is "oky" or "oke":
+        set message to "Tamam"
+    else if message is "ztn":
+        set message to "Zaten"
